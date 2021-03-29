@@ -14,7 +14,9 @@ function signIn() {
     console.log(email);
     console.log(password);
     alert("Sign In Success");
-    window.location.href="index.html"
+    window.cookie = email;
+    console.log(window.cookie);
+    window.open("index.html?email=" + email, "_self");
 }
 
 function signUp() {
