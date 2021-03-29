@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Guides</title>
+    <link rel="stylesheet" href="stylesheet/uploadGuides.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <script type="text/javascript" src="scripts/uploadGuide.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<ul>
+    <li id="homepage" style="font-family: 'Audiowide', sans-serif"><a id="homepagelink" href="index.html">Trip Planner</a></li>
+    <li><a id="destination" href="destination.html">Travel Destination</a></li>
+    <li><a id="review" href="review.html">Travel Guides</a></li>
+    <li><a id="signin" href="signin.html"></a></li>
+</ul>
+
+<div id="guideArea">
+    <textarea id="writeArea" placeholder="start your guide here"></textarea></br>
+    <img src="img/uploadicon.jpg" style="width: 25px; height: 25px">
+    <input type="file" id="file" onchange="preview(this)" accept="image/jpg,image/jpeg,image/png,image/PNG">
+    <img src="#" id="img3" style="height: 20%; width: 20%"/></br>
+    <button type="button">Upload</button>
+</div>
+
+</body>
+</html>
