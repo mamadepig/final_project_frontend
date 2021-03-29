@@ -1,6 +1,15 @@
 function signIn() {
     var email = $('#email').val();
     var password = $('#password').val();
+    if (password == ""){
+        alert("Please enter the password");
+        $("#password").focus();
+        return ;
+    }else if (email == ""){
+        alert("Please enter the email");
+        $("#email").focus();
+        return ;
+    }
     console.log("sign in");
     console.log(email);
     console.log(password);
