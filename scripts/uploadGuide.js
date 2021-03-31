@@ -14,12 +14,54 @@ window.onload = function(){
     };
 }
 
+var imagename = "";
+var encoded_image = null;
+var file_type = null;
+
 function preview() {
     var reader = new FileReader();
-    f = document.getElementById("file").files[0];
+    var f = document.getElementById("file").files[0];
+    imagename = f.name;
+    file_type = imagename.split(".")[1];
+    console.log(imagename);
+    console.log(file_type);
     reader.readAsDataURL(f);
     reader.onload = function(e) {
         document.getElementById("img3").src = this.result;
+        var src = e.target.result;
+        encoded_image = src.split(",")[1];
         $("#img3").css("display", "block");
     };
+}
+
+function upload() {
+    var text = $("#writeArea").val();
+    var destination = $("#destination1").val();
+    console.log(encoded_image);
+    var userkey = location.href.substr(location.href.lastIndexOf("?") + 1).split("=")[1];
+    console.log(userkey);
+    var date = Date.now();
+    var textname = userkey.replace(".", "") + date + ".txt";
+    console.log(textname);
+
+    var apigClient = apigClientFactory.newClient({});
+
+    var params = {
+        "filename": textname,
+        "customlabels": destination,
+        "Content-Type": "text/plain"
+    };
+
+    var additionalParams = {
+        "filename": textname,
+        "customlabels": destination,
+        "Content-Type": "text/plain"
+    };
+
+    apigClient.uploadPut(params, text, additionalParams).then(
+        (result) => {
+            console.log(result);
+        }).catch((error) => {
+            console.log(error);
+    })
 }
