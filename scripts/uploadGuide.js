@@ -42,6 +42,7 @@ function upload() {
     console.log(userkey);
     var date = Date.now();
     var textname = userkey.replace(".", "") + date + ".txt";
+    var imagename = userkey.replace(".", "") + date + "." + file_type;
     console.log(textname);
 
     var apigClient = apigClientFactory.newClient({});
@@ -64,4 +65,26 @@ function upload() {
         }).catch((error) => {
             console.log(error);
     })
+
+    var params = {
+        "filename": imagename,
+        "customlabels": destination,
+        "Content-Type": "image/jpg;base64"
+    };
+
+    var additionalParams = {
+        "filename": imagename,
+        "customlabels": destination,
+        "Content-Type": "image/jpg;base64"
+    };
+
+    apigClient.uploadPut(params, text, additionalParams).then(
+        (result) => {
+            console.log(result);
+            alert("upload successfully");
+            window.open("review.html?email="+userkey);
+        }).catch((error) => {
+        console.log(error);
+    })
+
 }
