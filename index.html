@@ -6,6 +6,18 @@
     <link rel="stylesheet" href="stylesheet/index_style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <script type="text/javascript" src="scripts/index.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="apigClient.js"></script>
 </head>
 <body>
 <ul>
@@ -15,11 +27,9 @@
     <li><a id="signin" href="signin.html"></a></li>
 </ul>
 <div id="search destination">
-    <form>
-        <label for="search" style="color: white">Find your travel destination</label><br><br>
-        <input type="text" id="search" placeholder="where do you want to go..."><br>
-        <input type="submit" value="search">
-    </form>
+    <label for="search" style="color: white">Find your travel destination</label><br><br>
+    <input type="text" id="search" placeholder="where do you want to go..."><br>
+    <button type="button" onclick="searchRestaurant()">search</button>
 </div>
 </body>
 </html>

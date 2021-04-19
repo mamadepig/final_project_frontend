@@ -119,6 +119,42 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.searchrestaurantsGet = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['restaurant'], ['body']);
+        
+        var searchrestaurantsGetRequest = {
+            verb: 'get'.toUpperCase(),
+            path: pathComponent + uritemplate('/searchrestaurants').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['restaurant']),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(searchrestaurantsGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.searchrestaurantsOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var searchrestaurantsOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/searchrestaurants').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(searchrestaurantsOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.uploadPut = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         

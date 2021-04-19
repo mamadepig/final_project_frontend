@@ -1,6 +1,6 @@
+var a = location.href;
+var email = a.substr(a.lastIndexOf("?") + 1).split("=");
 window.onload = function(){
-    var a = location.href;
-    var email = a.substr(a.lastIndexOf("?") + 1).split("=");
     console.log(email);
     console.log(email[0] == "email");
     console.log(email[1]);
@@ -8,7 +8,17 @@ window.onload = function(){
         document.getElementById("signin").innerHTML = email[1];
         document.getElementById("destination").href = "destination.html?email=" + email[1];
         document.getElementById("review").href = "review.html?email=" + email[1];
-    }else{
+    }else {
         document.getElementById("signin").innerHTML = "Sign in/Sign up";
+    }
+}
+
+function searchRestaurant() {
+    var location = $("#search").val()
+    if (location == "") {
+        alert("Please enter a destination");
+    }
+    else{
+        window.open("searchResult.html?email=" + email[1] + "&location=" + location);
     }
 }

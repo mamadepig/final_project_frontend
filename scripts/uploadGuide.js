@@ -78,7 +78,7 @@ function upload() {
         "Content-Type": "image/jpg;base64"
     };
 
-    apigClient.uploadPut(params, text, additionalParams).then(
+    apigClient.uploadPut(params, encoded_image, additionalParams).then(
         (result) => {
             console.log(result);
             alert("upload successfully");
