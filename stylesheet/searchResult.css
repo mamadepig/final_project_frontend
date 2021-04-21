@@ -63,3 +63,33 @@ div.restaurant {
     background-color: #006699;
     color: white;
 }
+
+div.restaurant::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+img.show {
+    width: 400px;
+    height: 400px;
+}
+
+div.resImage {
+    float: left;
+    display: inline;
+    margin-top:0;
+    margin-left:5px;
+}
+
+div.resText {
+    float: right;
+    display: inline;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+h1 {
+    color: #4CAF50;
+    text-align: center;
+}

@@ -23,19 +23,47 @@ window.onload = function(){
 
     apigClient.searchrestaurantsGet(params, {},{}).then(
         (result) => {
-            var show = "";
-            var restaurants = result.data
+            console.log(result);
+            var showRestaurant = "";
+            var showLandmarks = "";
+            var showHotels = "";
+            var all_result = result.data;
+            var landmark = all_result.slice(0, 5);
+            var restaurants = all_result.slice(5, 10);
+            var hotel = all_result.slice(10, 15);
+            console.log(landmark);
+            console.log(hotel);
             console.log(restaurants);
             for (let i = 0; i < restaurants.length; i++){
                 var name = restaurants[i].name;
                 var address = restaurants[i].address;
                 var rating = restaurants[i].rating;
                 var photo = restaurants[i].photo;
-                console.log(name, address, rating, photo)
-                show += "<div>name:" + name + "address: " + address + "rating: " + rating + "</div>" + " <img src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>"
+                console.log(name, address, rating, photo);
+                showRestaurant += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Restaurant Name:" + name + "<br>Address: " + address + "<br>Rating: " + rating + "</div>" +  "</div></div>"
             }
-            console.log(show);
-            document.getElementById("showresult").innerHTML = show;
+
+            for (let i = 0; i < hotel.length; i++){
+                var name = hotel[i].name;
+                var address = hotel[i].address;
+                var rating = hotel[i].rating;
+                var photo = hotel[i].photo;
+                console.log(name, address, rating, photo);
+                showHotels += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Hotel Name:" + name + "<br>Address: " + address + "<br>Rating: " + rating + "</div>" +  "</div></div>"
+            }
+
+            for (let i = 0; i < landmark.length; i++){
+                var name = landmark[i].name;
+                var address = landmark[i].address;
+                var rating = landmark[i].rating;
+                var photo = landmark[i].photo;
+                console.log(name, address, rating, photo);
+                showLandmarks += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Landmark Name:" + name + "<br>Address: " + address + "<br>Rating: " + rating + "</div>" +  "</div></div>"
+            }
+            console.log(showRestaurant);
+            document.getElementById("showRestaurant").innerHTML = showRestaurant;
+            document.getElementById("showHotels").innerHTML = showHotels;
+            document.getElementById("showLandmarks").innerHTML = showLandmarks;
         }
 
     ).catch(
