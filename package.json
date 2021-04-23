@@ -1,12 +1,28 @@
 {
-  "name": "untitled",
+  "name": "Traveplanner",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
+  "private": true,
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@react-native-community/netinfo": "^6.0.0",
+    "amazon-cognito-auth-js": "^1.3.3",
+    "amazon-cognito-identity-js": "^4.6.0",
+    "aws-amplify": "^3.3.27",
+    "aws-amplify-react-native": "^4.3.2",
+    "browserify": "^17.0.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.1.0",
+    "json-loader": "^0.5.7",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.1.5"
+  }
 }
