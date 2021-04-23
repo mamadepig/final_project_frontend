@@ -33,6 +33,7 @@ function signUp() {
             return;
         }
         var cognitoUser = result.user;
+        alter("Sign Up successfully!");
         console.log('user name is ' + cognitoUser.getUsername());
     });
     console.log("Sign Up Success");
