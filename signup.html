@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <script type="text/javascript" src="amazon-cognito-identity.min.js"></script>
+    <script src="scripts/signUp.js"></script>
+    <link rel="stylesheet" href="stylesheet/sign.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <form>
+        <h3 style="font-family: 'Audiowide', sans-serif">Travel Planner</h3>
+        <label for="email">Email Address</label>
+        <input id="email" type="text">
+        <label for="password">Password</label>
+        <input id="password" type="password">
+        <fieldset>
+            <legend>Select restaurant types you like:</legend>
+            <input type="checkbox" name="res" value="American">American<br>
+            <input type="checkbox" name="res" value="Chinese">Chinese<br>
+            <input type="checkbox" name="res" value="Mexican">Mexican<br>
+        </fieldset>
+        <fieldset>
+            <legend>Which level of money would you like to spend on travelling(1 to 5):</legend>
+            <input type="radio" name="priceRange" value="1">1<br>
+            <input type="radio" name="priceRange" value="2">2<br>
+            <input type="radio" name="priceRange" value="3">3<br>
+            <input type="radio" name="priceRange" value="4">4<br>
+            <input type="radio" name="priceRange" value="5">5<br>
+        </fieldset>
+        <fieldset>
+            <legend>Travel alone or with others:</legend>
+            <input type="radio" name="q3" value="Alone">Alone<br>
+            <input type="radio" name="q3" value="With others">With others<br>
+        </fieldset>
+        <button type="button" onclick="signUp()">sign Up</button>
+    </form>
+</div>
+</body>
+</html>
