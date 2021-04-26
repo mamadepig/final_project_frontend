@@ -1,24 +1,28 @@
-var a = location.href;
-var email = a.substr(a.lastIndexOf("?") + 1).split("=");
-window.onload = function(){
-    console.log(email);
-    console.log(email[0] == "email");
-    console.log(email[1]);
-    if (email[0] == "email"){
-        document.getElementById("signin").innerHTML = email[1];
-        document.getElementById("destination").href = "destination.html?email=" + email[1];
-        document.getElementById("review").href = "review.html?email=" + email[1];
-    }else {
+window.onload = function() {
+    var a = location.href;
+    if (a.split("?")[1] === undefined) {
         document.getElementById("signin").innerHTML = "Sign in/Sign up";
+    }else {
+        var emailArray = a.split("?")[1].split("=")
+        if (emailArray[0] == "email") {
+            document.getElementById("signin").innerHTML = emailArray[1];
+            document.getElementById("destination").href = "destination.html?email=" + emailArray[1];
+            document.getElementById("review").href = "review.html?email=" + emailArray[1];
+            document.getElementById("signin").href = "updateUserData.html?email=" + emailArray[1];
+        } else {
+            document.getElementById("signin").innerHTML = "Sign in/Sign up";
+        }
     }
 }
 
 function searchRestaurant() {
-    var location = $("#search").val()
+    var location = $("#search").val();
+    var days = $("#days").val();
+    console.log(days);
     if (location == "") {
         alert("Please enter a destination");
     }
     else{
-        window.open("searchResult.html?email=" + email[1] + "&location=" + location);
+        window.open("searchResult.html?email=" + email[1] + "&location=" + location + "&days=" + days);
     }
 }

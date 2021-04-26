@@ -1,14 +1,14 @@
 window.onload = function(){
     var a = location.href;
-    var email = a.substr(a.lastIndexOf("?") + 1).split("=");
-    console.log(email);
-    console.log(email[0] == "email");
-    console.log(email[1]);
-    var email_location = email[1].split("&");
-    var email_address = email_location[0];
-    var search_location = email[2];
-    console.log(email[2]);
-    if (email[0] == "email"){
+    var data = a.split("?")[1].split("&")
+    console.log(data)
+    var email_address = data[0].split("=")[1]
+    console.log(email_address)
+    var search_location = data[1].split("=")[1]
+    console.log(location)
+    var dayNumber = data[2].split("=")[1]
+    console.log(dayNumber)
+    if (data[0].split("=")[0] == "email"){
         document.getElementById("signin").innerHTML = email_address;
         document.getElementById("destination").href = "destination.html?email=" + email_address;
         document.getElementById("review").href = "review.html?email=" + email_address;
@@ -18,52 +18,48 @@ window.onload = function(){
 
     var apigClient = apigClientFactory.newClient({});
     var params = {
-        "restaurant": search_location
+        "restaurant": search_location,
+        "email": email_address,
+        "days": dayNumber
     }
 
     apigClient.searchrestaurantsGet(params, {},{}).then(
         (result) => {
             console.log(result);
-            var showRestaurant = "";
-            var showLandmarks = "";
             var showHotels = "";
+            var showPlan = "";
             var all_result = result.data;
-            var landmark = all_result.slice(0, 5);
-            var restaurants = all_result.slice(5, 10);
-            var hotel = all_result.slice(10, 15);
-            console.log(landmark);
+            var hotel = all_result.slice(0, 1);
+            var plan = all_result.slice(1, all_result.length)
             console.log(hotel);
-            console.log(restaurants);
-            for (let i = 0; i < restaurants.length; i++){
-                var name = restaurants[i].name;
-                var address = restaurants[i].address;
-                var rating = restaurants[i].rating;
-                var photo = restaurants[i].photo;
-                console.log(name, address, rating, photo);
-                showRestaurant += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Restaurant Name:" + name + "<br>Address: " + address + "<br>Rating: " + rating + "</div>" +  "</div></div>"
-            }
-
+            console.log(plan);
+            showHotels += "<div style='background-color: #0099cc'><h1 style='color: white'>Hotels</h1>"
             for (let i = 0; i < hotel.length; i++){
                 var name = hotel[i].name;
                 var address = hotel[i].address;
                 var rating = hotel[i].rating;
                 var photo = hotel[i].photo;
                 console.log(name, address, rating, photo);
-                showHotels += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Hotel Name:" + name + "<br>Address: " + address + "<br>Rating: " + rating + "</div>" +  "</div></div>"
+                showHotels += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Name:" + name + "<br>Address: " + address + "<br>Rating: " + rating + "</div>" +  "</div></div>"
             }
+            showHotels += "</div>"
 
-            for (let i = 0; i < landmark.length; i++){
-                var name = landmark[i].name;
-                var address = landmark[i].address;
-                var rating = landmark[i].rating;
-                var photo = landmark[i].photo;
-                console.log(name, address, rating, photo);
-                showLandmarks += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Landmark Name:" + name + "<br>Address: " + address + "<br>Rating: " + rating + "</div>" +  "</div></div>"
+            showPlan += "<div style='background-color: #0099cc'><h1 style='color: white'>Plan</h1>"
+            for (let i = 0; i < dayNumber; i++) {
+                showPlan += "<h2 style='color:white'> Day" + (i + 1) + "</h2>";
+                showPlan += "<h3 style='color: white'> Morning </h3>";
+                showPlan += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + plan[4 * i].photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Name:" + plan[4 * i].name + "<br>Address: " + plan[4 * i].address + "<br>Rating: " + plan[4 * i].rating + "</div>" +  "</div></div>";
+                showPlan += "<h3 style='color: white'> Launch </h3>"
+                showPlan += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + plan[4 * i + 1].photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Name:" + plan[4 * i + 1].name + "<br>Address: " + plan[4 * i + 1].address + "<br>Rating: " + plan[4 * i + 1].rating + "</div>" +  "</div></div>";
+                showPlan += "<h3 style='color: white'> Afternoon </h3>"
+                showPlan += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + plan[4 * i + 2].photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Name:" + plan[4 * i + 2].name + "<br>Address: " + plan[4 * i + 2].address + "<br>Rating: " + plan[4 * i + 2].rating + "</div>" +  "</div></div>";
+                showPlan += "<h3 style='color: white'> Dinner </h3>"
+                showPlan += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + plan[4 * i + 3].photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Name:" + plan[4 * i + 3].name + "<br>Address: " + plan[4 * i + 3].address + "<br>Rating: " + plan[4 * i + 3].rating + "</div>" +  "</div></div>";
             }
-            console.log(showRestaurant);
-            document.getElementById("showRestaurant").innerHTML = showRestaurant;
+            showPlan += "</div>";
+
             document.getElementById("showHotels").innerHTML = showHotels;
-            document.getElementById("showLandmarks").innerHTML = showLandmarks;
+            document.getElementById("showPlan").innerHTML = showPlan;
         }
 
     ).catch(

@@ -122,13 +122,13 @@ apigClientFactory.newClient = function (config) {
     apigClient.searchrestaurantsGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
-        apiGateway.core.utils.assertParametersDefined(params, ['restaurant'], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['restaurant', 'days', 'email'], ['body']);
         
         var searchrestaurantsGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/searchrestaurants').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
             headers: apiGateway.core.utils.parseParametersToObject(params, []),
-            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['restaurant']),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['restaurant', 'days', 'email']),
             body: body
         };
         
@@ -152,6 +152,42 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(searchrestaurantsOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.storedataPut = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['moneylevel', 'email', 'cuisine'], ['body']);
+        
+        var storedataPutRequest = {
+            verb: 'put'.toUpperCase(),
+            path: pathComponent + uritemplate('/storedata').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['moneylevel', 'email', 'cuisine']),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(storedataPutRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.storedataOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var storedataOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/storedata').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(storedataOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     

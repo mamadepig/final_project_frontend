@@ -23,6 +23,20 @@ div {
     overflow:scroll;
 }
 
+div.userData {
+    color:#4CAF50;
+    border: 2px solid pink;
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+    position: absolute;
+    width: 700px;
+    height: 500px;
+    top: 10%;
+    left:25%;
+    overflow:scroll;
+}
+
 input[type=text], select {
     width: 100%;
     padding: 12px 20px;

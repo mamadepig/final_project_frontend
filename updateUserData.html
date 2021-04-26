@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User Data</title>
+    <script type="text/javascript" src="amazon-cognito-identity.min.js"></script>
+    <script src="scripts/uploadUserData.js"></script>
+    <link rel="stylesheet" href="stylesheet/sign.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="apigClient.js"></script>
+</head>
+<body>
+<div class="userData">
+    <form>
+        <h3 style="font-family: 'Audiowide', sans-serif">Travel Planner</h3>
+        <h3> Update User information</h3>
+        <fieldset>
+            <legend>Select restaurant types you like:</legend>
+            <input type="checkbox" name="res" value="American">American<br>
+            <input type="checkbox" name="res" value="Chinese">Chinese<br>
+            <input type="checkbox" name="res" value="Mexican">Mexican<br>
+            <input type="checkbox" name="res" value="Italian">Italian<br>
+            <input type="checkbox" name="res" value="Thai">Thai<br>
+            <input type="checkbox" name="res" value="French">French<br>
+            <input type="checkbox" name="res" value="Japanese">Japanese<br>
+            <input type="checkbox" name="res" value="Spanish">Spanish<br>
+            <input type="checkbox" name="res" value="Indian">Indian<br>
+        </fieldset>
+        <fieldset>
+            <legend>Which level of money would you like to spend on travelling:</legend>
+            <input type="radio" name="priceRange" value="0">Free<br>
+            <input type="radio" name="priceRange" value="1">Inexpensive<br>
+            <input type="radio" name="priceRange" value="2">Moderate<br>
+            <input type="radio" name="priceRange" value="3">Expensive<br>
+            <input type="radio" name="priceRange" value="4">Very Expensive<br>
+        </fieldset>
+        <fieldset>
+            <legend>Travel alone or with others:</legend>
+            <input type="radio" name="q3" value="Alone">Alone<br>
+            <input type="radio" name="q3" value="With others">With others<br>
+        </fieldset>
+        <button type="button" onclick="uploadData()">Update</button>
+        <button type="button" onclick="signOut()">Sign Out</button>
+    </form>
+</div>
+</body>
+</html>
