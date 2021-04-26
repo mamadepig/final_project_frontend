@@ -16,13 +16,15 @@ window.onload = function() {
 }
 
 function searchRestaurant() {
-    var location = $("#search").val();
+    var location_value = $("#search").val();
     var days = $("#days").val();
     console.log(days);
-    if (location == "") {
+    if (location_value == "") {
         alert("Please enter a destination");
     }
     else{
-        window.open("searchResult.html?email=" + email[1] + "&location=" + location + "&days=" + days);
+        var a = location.href;
+        var emailArray = a.split("?")[1].split("=")
+        window.open("searchResult.html?email=" + emailArray[1] + "&location=" + location_value + "&days=" + days);
     }
 }
