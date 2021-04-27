@@ -1,3 +1,6 @@
+var hotel = null;
+var plan = null;
+
 window.onload = function(){
     var a = location.href;
     var data = a.split("?")[1].split("&")
@@ -11,6 +14,7 @@ window.onload = function(){
     if (data[0].split("=")[0] == "email"){
         document.getElementById("signin").innerHTML = email_address;
         document.getElementById("review").href = "review.html?email=" + email_address;
+        document.getElementById("signin").href = "updateUserData.html?email=" + email_address;
     }else {
         document.getElementById("signin").innerHTML = "Sign in/Sign up";
     }
@@ -28,8 +32,8 @@ window.onload = function(){
             var showHotels = "";
             var showPlan = "";
             var all_result = result.data;
-            var hotel = all_result.slice(0, 3);
-            var plan = all_result.slice(3, all_result.length)
+            hotel = all_result.slice(0, 3);
+            plan = all_result.slice(3, all_result.length)
             console.log(hotel);
             console.log(plan);
             showHotels += "<div style='background-color: #0099cc'><h1 style='color: white'>Hotels</h1>"
@@ -73,43 +77,11 @@ window.onload = function(){
 function email_plan() {
     var a = location.href;
     var data = a.split("?")[1].split("&")
-    console.log(data)
     var email_address = data[0].split("=")[1]
-    console.log(email_address)
-    var search_location = data[1].split("=")[1]
-    console.log(location)
-    var dayNumber = data[2].split("=")[1]
-    console.log(dayNumber)
-    if (data[0].split("=")[0] == "email"){
-        document.getElementById("signin").innerHTML = email_address;
-        document.getElementById("review").href = "review.html?email=" + email_address;
-    }else {
-        document.getElementById("signin").innerHTML = "Sign in/Sign up";
-    }
+    console.log(plan);
+    console.log(hotel);
+    console.log(email_address);
 
-    var apigClient = apigClientFactory.newClient({});
-    var params = {
-        "restaurant": search_location,
-        "email": email_address,
-        "days": dayNumber
-    }
-
-    apigClient.searchrestaurantsGet(params, {},{}).then(
-        (result) => {
-            console.log(result);
-            var all_result = result.data;
-            var hotel = all_result.slice(0, 3);
-            var plan = all_result.slice(3, all_result.length)
-            console.log(hotel);
-            console.log(plan);
-            console.log(email_address);
-            console.log("send email")
-        }
-    ).catch(
-        (error) => {
-            console.log(error);
-        }
-    )
 }
 
 
