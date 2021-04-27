@@ -155,6 +155,42 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.sendemailPut = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['email', 'plan', 'days', 'location', 'hotel'], ['body']);
+        
+        var sendemailPutRequest = {
+            verb: 'put'.toUpperCase(),
+            path: pathComponent + uritemplate('/sendemail').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['plan', ]),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['email', 'days', 'location', 'hotel']),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(sendemailPutRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.sendemailOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var sendemailOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/sendemail').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(sendemailOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.storedataPut = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -194,12 +230,12 @@ apigClientFactory.newClient = function (config) {
     apigClient.uploadPut = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
-        apiGateway.core.utils.assertParametersDefined(params, ['Content-Type', 'customlabels', 'filename'], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['Content-Type', 'customlabels', 'imagetype', 'filename', 'useremail'], ['body']);
         
         var uploadPutRequest = {
             verb: 'put'.toUpperCase(),
             path: pathComponent + uritemplate('/upload').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, ['Content-Type', 'customlabels', 'filename']),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Content-Type', 'customlabels', 'imagetype', 'filename', 'useremail']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
@@ -224,6 +260,42 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(uploadOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.uploadphotoPut = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['Content-Type', 'filename'], ['body']);
+        
+        var uploadphotoPutRequest = {
+            verb: 'put'.toUpperCase(),
+            path: pathComponent + uritemplate('/uploadphoto').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Content-Type', 'filename']),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(uploadphotoPutRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.uploadphotoOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var uploadphotoOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/uploadphoto').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(uploadphotoOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
 

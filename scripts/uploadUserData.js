@@ -16,14 +16,7 @@ function uploadData () {
             priceValue = priceRange[i].value;
         }
     }
-    var anwser3 = document.getElementsByName("q3")
-    var anwser3Value = null;
-    for (var i = 0; i< anwser3.length; i++){
-        if (anwser3[i].checked){
-            anwser3Value = anwser3[i].value;
-        }
-    }
-    console.log(anwser3Value);
+
     console.log(priceValue);
     console.log(resValue);
     console.log(email_address)

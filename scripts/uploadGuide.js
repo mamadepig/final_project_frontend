@@ -41,8 +41,8 @@ function upload() {
     var userkey = location.href.substr(location.href.lastIndexOf("?") + 1).split("=")[1];
     console.log(userkey);
     var date = Date.now();
-    var textname = userkey.replace(".", "") + date + ".txt";
-    var imagename = userkey.replace(".", "") + date + "." + file_type;
+    var textname = userkey.replace(".", "").replace("@","") + date + ".txt";
+    var imagename = userkey.replace(".", "").replace("@","") + date + "." + file_type;
     console.log(textname);
 
     var apigClient = apigClientFactory.newClient({});
@@ -50,7 +50,9 @@ function upload() {
     var params = {
         "filename": textname,
         "customlabels": destination,
-        "Content-Type": "text/plain"
+        "Content-Type": "text/plain",
+        "imagetype": file_type,
+        "useremail": userkey,
     };
 
     var additionalParams = {
@@ -78,7 +80,7 @@ function upload() {
         "Content-Type": "image/jpg;base64"
     };
 
-    apigClient.uploadPut(params, encoded_image, additionalParams).then(
+    apigClient.uploadphotoPut(params, encoded_image, additionalParams).then(
         (result) => {
             console.log(result);
             alert("upload successfully");
