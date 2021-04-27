@@ -39,7 +39,7 @@ li a:hover {
 }
 
 button {
-    width: 100%;
+    width: 100px;
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -96,4 +96,14 @@ h1 {
 
 h2 {
     color: #4CAF50;
+}
+
+input[type=text], select {
+    width: 500px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }

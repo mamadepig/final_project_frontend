@@ -6,7 +6,6 @@ window.onload = function() {
         var emailArray = a.split("?")[1].split("=")
         if (emailArray[0] == "email") {
             document.getElementById("signin").innerHTML = emailArray[1];
-            document.getElementById("destination").href = "destination.html?email=" + emailArray[1];
             document.getElementById("review").href = "review.html?email=" + emailArray[1];
             document.getElementById("signin").href = "updateUserData.html?email=" + emailArray[1];
         } else {

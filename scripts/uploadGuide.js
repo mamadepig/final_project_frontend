@@ -6,9 +6,9 @@ window.onload = function(){
     console.log(email[1]);
     if (email[0] == "email"){
         document.getElementById("signin").innerHTML = email[1];
-        document.getElementById("destination").href = "destination.html?email=" + email[1];
         document.getElementById("review").href = "review.html?email=" + email[1];
         document.getElementById("homepagelink").href = "index.html?email=" + email[1];
+        document.getElementById("signin").href = "updateUserData.html?email=" + email[1];
     }else{
         document.getElementById("signin").innerHTML = "Sign in/Sign up";
     };
