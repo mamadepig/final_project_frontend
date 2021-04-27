@@ -29,8 +29,8 @@ window.onload = function(){
             var showHotels = "";
             var showPlan = "";
             var all_result = result.data;
-            var hotel = all_result.slice(0, 1);
-            var plan = all_result.slice(1, all_result.length)
+            var hotel = all_result.slice(0, 3);
+            var plan = all_result.slice(3, all_result.length)
             console.log(hotel);
             console.log(plan);
             showHotels += "<div style='background-color: #0099cc'><h1 style='color: white'>Hotels</h1>"
@@ -43,6 +43,7 @@ window.onload = function(){
                 showHotels += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Name:" + name + "<br>Address: " + address + "<br>Rating: " + rating + "</div>" +  "</div></div>"
             }
             showHotels += "</div>"
+            console.log(plan);
 
             showPlan += "<div style='background-color: #0099cc'><h1 style='color: white'>Plan</h1>"
             for (let i = 0; i < dayNumber; i++) {
