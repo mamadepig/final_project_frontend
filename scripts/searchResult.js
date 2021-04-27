@@ -57,7 +57,6 @@ window.onload = function(){
                 showPlan += "<div class='restaurant'>" + "<div class='resImage'><img class= 'show' src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + plan[4 * i + 3].photo + "&key=AIzaSyAL2QUFOh2P2gV2h2_b-P7f47xNO801WWo'>" + "<div class='resText'> Name:" + plan[4 * i + 3].name + "<br>Address: " + plan[4 * i + 3].address + "<br>Rating: " + plan[4 * i + 3].rating + "</div>" +  "</div></div>";
             }
             showPlan += "<div id=\"search destination\"><label for=\"search\" style=\"color: white\">Email the plan to me</label><br><br>\n" +
-                        "<input type=\"text\" id=\"search\" placeholder=\"your email ... \"><br><br>\n" +
                         "<button type=\"button\" onclick=\"email_plan()\">email me</button></div>";
 
             document.getElementById("showHotels").innerHTML =  showHotels;
@@ -103,6 +102,7 @@ function email_plan() {
             var plan = all_result.slice(3, all_result.length)
             console.log(hotel);
             console.log(plan);
+            console.log(email_address);
             console.log("send email")
         }
     ).catch(
